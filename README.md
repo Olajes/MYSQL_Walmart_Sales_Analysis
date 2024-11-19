@@ -185,15 +185,207 @@ The dataset contains transactions from three Walmart branches located in Mandala
 	ORDER BY total_revenue DESC; 
 	-- LIMIT 1 
    ```
+7. What is the city with the largest revenue?  
+   ```sql
+	 SELECT 
+		city,
+		SUM(total) total_revenue
+	FROM sales
+	GROUP BY city
+	ORDER BY total_revenue DESC; 
+-- LIMIT 1 
+  ```
+8. What product line had the largest VAT?   
+```sql
+	SELECT 
+	product_line,
+	SUM(VAT) VAT
+	FROM sales
+	GROUP BY product_line
+	ORDER BY VAT DESC; 
+	-- LIMIT 1
+```
+9. Fetch each product line and add a column to those product line showing "Good","Bad" . Good if its greater than average sales
+```sql
+	SELECT 
+	    product_line,
+	    total,
+	    CASE 
+	        WHEN total > (SELECT AVG(total) FROM sales) THEN 'Good'
+	        ELSE 'Bad'
+	    END AS performance
+	FROM sales;
+```
+10. Which branch sold more products than average product sold?
+
+```sql
+	SELECT 
+		branch,
+	    SUM(quantity) qty
+	FROM sales
+	GROUP BY branch
+	HAVING SUM(quantity) > (SELECT AVG(quantity) FROM sales);
+```
+11. What is the most common product line by gender?
+
+```sql
+	SELECT 
+		product_line,
+	    gender,
+	    COUNT(gender) AS total_cnt 
+	FROM sales
+	GROUP BY gender,product_line
+	ORDER BY total_cnt DESC; 
+```
+
+12. What is the average rating of each product line?
+```sql
+	SELECT 
+		product_line,
+	    AVG(rating) AS avg_rating 
+	FROM sales
+	GROUP BY product_line
+	ORDER BY avg_rating DESC;
+```
 
 ### Sales
 1. What are the sales trends by time of day and day of the week?
+   ```sql
+	SELECT
+	time_of_day,
+	COUNT(*) AS total_sales
+	FROM sales
+	GROUP BY time_of_day
+	ORDER BY total_sales DESC;
+   ```
 2. Which customer type brings the most revenue?
+   ```sql
+	SELECT
+	customer_type,
+	SUM(total) AS total_revenue
+	FROM sales
+	GROUP BY customer_type
+	ORDER BY total_revenue DESC;
+   ```
+3. Which city has the largest tax percent/VAT (Value Added Tax)?
+   ```sql
+		SELECT
+		city,
+		SUM(VAT) AS VAT
+		FROM sales
+		GROUP BY city
+		ORDER BY VAT DESC;
+   ```
 
+4. Which customer type pays the most in VAT
+   ```sql
+	SELECT
+	customer_type,
+	SUM(VAT) AS VAT
+	FROM sales
+	GROUP BY customer_type
+	ORDER BY VAT DESC;
+   ```
+
+   
 ### Customer
 1. What is the gender distribution of customers?
+   ```sql
+   	SELECT
+	DISTINCT customer_type
+	-- COUNT(customer_type)
+	FROM sales;
+   ```
 2. Which day of the week has the highest ratings per branch?
+   ```sql
+	SELECT
+	DISTINCT payment_method
+	-- COUNT(payment_method)
+	FROM sales;
+   ```
+3. What is the most common customer type?
+   
+  ```sql
+	SELECT
+	customer_type,
+	COUNT(customer_type) cus_type
+	FROM sales
+	GROUP BY customer_type
+	ORDER BY cus_type DESC
+	LIMIT 1;
+  ```
 
+4. Which customer type buys the most?
+   ```sql
+	SELECT 
+	customer_type,
+	COUNT(customer_type) cus_type
+	FROM sales
+	GROUP BY customer_type
+	ORDER BY cus_type DESC
+	LIMIT 1;
+   ```
+
+5. What is the gender of most of the customers?
+  ```sql
+	SELECT
+	gender,
+	COUNT(gender) cut_gender
+	FROM sales
+	GROUP BY gender
+	ORDER BY cut_gender DESC
+	LIMIT 1;
+   ```
+6. What is the gender distribution per branch?
+   ```sql
+	SELECT
+	gender,
+	branch,
+	COUNT(*) cnt
+	FROM sales
+	GROUP BY branch,gender
+	ORDER BY branch,gender DESC;
+  ```
+7. Which time of the day do customers give most ratings?
+   ```sql
+	SELECT
+	time_of_day,
+	ROUND(AVG(rating),4) AS avg_rating
+	FROM sales
+	GROUP BY time_of_day
+	ORDER BY avg_rating DESC;
+   ```
+
+8. Which time of the day do customers give most ratings per branch?
+  ```sql
+	SELECT
+	time_of_day,
+	branch,
+	COUNT(rating) cnt
+	FROM sales
+	GROUP BY time_of_day,branch
+	ORDER BY cnt DESC;
+   ```
+9. Which day fo the week has the best avg ratings?
+   ```sql
+	SELECT
+	time_of_day,
+	branch,
+	COUNT(rating) cnt
+	FROM sales
+	GROUP BY time_of_day,branch
+	ORDER BY cnt DESC;
+  ```
+10. Which day of the week has the best average ratings per branch?
+    ```sql
+	SELECT
+	day_name,
+	# branch,
+	AVG(rating) cnt
+	FROM sales
+	GROUP BY day_name
+	ORDER BY cnt DESC;
+    ```
 ---
 
 ## Revenue and Profit Calculations
