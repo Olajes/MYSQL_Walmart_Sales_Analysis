@@ -78,21 +78,21 @@ The dataset contains transactions from three Walmart branches located in Mandala
 - Adding columns `day_name`
   
 ```sql
-UPDATE sales
-SET day_name = DAYNAME(`date`);
+	UPDATE sales
+	SET day_name = DAYNAME(`date`);
 ```
   
 - Adding columns `month_name`
   
 ```sql
-SELECT `date`,
-monthname(`date`) AS month_name
-FROM sales;
-
-ALTER TABLE sales ADD COLUMN month_name VARCHAR(20) AFTER `date`;
-
-UPDATE sales
-SET month_name = monthname(`date`);
+	SELECT `date`,
+	monthname(`date`) AS month_name
+	FROM sales;
+	
+	ALTER TABLE sales ADD COLUMN month_name VARCHAR(20) AFTER `date`;
+	
+	UPDATE sales
+	SET month_name = monthname(`date`);
 ```
 ---
 ### 3. Exploratory Data Analysis (EDA)
@@ -108,83 +108,82 @@ SET month_name = monthname(`date`);
 ### Generic
 1. How many unique cities are in the data?
 ```sql
-SELECT 
-	DISTINCT city
-    -- COUNT(DISTINCT city)
-FROM sales;
+	SELECT 
+		DISTINCT city
+	    -- COUNT(DISTINCT city)
+	FROM sales;
 ```
 
 2. In which city is each branch located?
    
 ```sql
-SELECT 
-	DISTINCT city,
-     	branch
-FROM sales;
+	SELECT 
+		DISTINCT city,
+	     	branch
+	FROM sales;
 ```
 ---
 ### Product
 1. How many unique product lines exist?
    ```sql
-   SELECT
-	DISTINCT product_line
-	-- COUNT(DISTINCT product_line)
-FROM sales;
+	   SELECT
+		DISTINCT product_line
+		-- COUNT(DISTINCT product_line)
+	   FROM sales;
    ```
 2. What is the most common payment method?
    ```sql
- SELECT
-	payment_method,
-	COUNT(payment_method) AS ctpm
-FROM sales
-GROUP BY payment_method
-ORDER BY ctpm DESC;   
+	 SELECT
+		payment_method,
+		COUNT(payment_method) AS ctpm
+	FROM sales
+	GROUP BY payment_method
+	ORDER BY ctpm DESC;   
    ```
 
 3. What is the most selling product line?
  ```sql
 
-
-SELECT
-	product_line,
-	COUNT(product_line) ctpl
-FROM sales
-GROUP BY product_line
-ORDER BY ctpl DESC;
--- LIMIT 1
+	SELECT
+		product_line,
+		COUNT(product_line) ctpl
+	FROM sales
+	GROUP BY product_line
+	ORDER BY ctpl DESC;
+	-- LIMIT 1
 ```
 4. What is the total revenue by month?
    
  ```sql
-SELECT 
-	month_name,
-    	SUM(total) total_revenue
-FROM sales
-GROUP BY month_name
-ORDER BY total_revenue DESC;
+	SELECT 
+		month_name,
+	    	SUM(total) total_revenue
+	FROM sales
+	GROUP BY month_name
+	ORDER BY total_revenue DESC;
 ```
 
 5. What month had the largest COGS?
     
 ```sql
-SELECT 
-	month_name,
-    SUM(cogs) cogs
-FROM sales
-GROUP BY month_name
-ORDER BY cogs DESC;  
--- LIMIT 1
+	SELECT 
+		month_name,
+	    SUM(cogs) cogs
+	FROM sales
+	GROUP BY month_name
+	ORDER BY cogs DESC;  
+	-- LIMIT 1
 ```
 
 6. Which product line generates the most revenue?
    ```sql
-   SELECT 
-	product_line,
-    	SUM(total) total_revenue
-FROM sales
-GROUP BY product_line
-ORDER BY total_revenue DESC; 
--- LIMIT 1 
+	SELECT 
+		product_line,
+	    	SUM(total) total_revenue
+	FROM sales
+	GROUP BY product_line
+	ORDER BY total_revenue DESC; 
+	-- LIMIT 1 
    ```
 
 ### Sales
