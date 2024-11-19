@@ -67,6 +67,15 @@ The dataset contains transactions from three Walmart branches located in Mandala
   
 ### 2. Feature Engineering
 - Adding columns like `time_of_day`, `day_name`, and `month_name` to better understand sales patterns.
+  ```sql
+  SELECT `time`,
+	(CASE
+		WHEN `time` BETWEEN "00:00:00" AND "12:00:00" THEN "Morning"
+		WHEN `time` BETWEEN "12:01:00" AND "16:00:00" THEN "Afternoon"
+		ELSE "Evening"
+    END ) AS time_of_day
+FROM sales;
+  ```
 
 ### 3. Exploratory Data Analysis (EDA)
 - Conduct in-depth analysis to answer business questions.
@@ -80,6 +89,10 @@ The dataset contains transactions from three Walmart branches located in Mandala
 
 ### Generic
 1. How many unique cities are in the data?
+  ```sql
+
+
+   ```
 2. In which city is each branch located?
 
 ### Product
