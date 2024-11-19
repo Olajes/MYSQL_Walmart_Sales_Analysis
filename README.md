@@ -75,7 +75,24 @@ The dataset contains transactions from three Walmart branches located in Mandala
 			ELSE "Evening"
 	    END );
 	  ```
+- Adding columns `day_name`
+```sql
+UPDATE sales
+SET day_name = DAYNAME(`date`);
+```
+  
+- Adding columns `month_name`
+```sql
+SELECT
+`date`,
+monthname(`date`) AS month_name
+FROM sales;
 
+ALTER TABLE sales ADD COLUMN month_name VARCHAR(20) AFTER `date`;
+
+UPDATE sales
+SET month_name = monthname(`date`);
+```
 ---
 ### 3. Exploratory Data Analysis (EDA)
 - Conduct in-depth analysis to answer business questions.
