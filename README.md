@@ -143,7 +143,7 @@ ORDER BY ctpm DESC;
 
 3. What is the most selling product line?
  ```sql
-SELECT * FROM walmart_sales.sales;
+
 
 SELECT
 	product_line,
