@@ -379,13 +379,13 @@ The dataset contains transactions from three Walmart branches located in Mandala
 10. Which day of the week has the best average ratings per branch?
 
 ```sql
-SELECT
-    day_name,
-    # branch,
-    AVG(rating) AS avg_rating
-FROM sales
-GROUP BY day_name
-ORDER BY avg_rating DESC;
+	SELECT
+	    day_name,
+	    # branch,
+	    AVG(rating) AS avg_rating
+	FROM sales
+	GROUP BY day_name
+	ORDER BY avg_rating DESC;
 ```
 ---
 
