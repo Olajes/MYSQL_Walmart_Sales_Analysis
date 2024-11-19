@@ -122,7 +122,7 @@ SELECT
      	branch
 FROM sales;
 ```
-
+---
 ### Product
 1. How many unique product lines exist?
    ```sql
