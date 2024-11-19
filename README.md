@@ -388,8 +388,8 @@ The dataset contains transactions from three Walmart branches located in Mandala
 		ORDER BY cnt DESC;
     ```
 
-
 ---
+
 ## Revenue and Profit Calculations
 
 **Formulas:**
