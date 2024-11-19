@@ -74,17 +74,18 @@ The dataset contains transactions from three Walmart branches located in Mandala
 			WHEN `time` BETWEEN "12:01:00" AND "16:00:00" THEN "Afternoon"
 			ELSE "Evening"
 	    END );
-	  ```
+  ```
 - Adding columns `day_name`
+  
 ```sql
 UPDATE sales
 SET day_name = DAYNAME(`date`);
 ```
   
 - Adding columns `month_name`
+  
 ```sql
-SELECT
-`date`,
+SELECT `date`,
 monthname(`date`) AS month_name
 FROM sales;
 
