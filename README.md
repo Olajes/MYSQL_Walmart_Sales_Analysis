@@ -6,7 +6,7 @@ This project aims to explore Walmart sales data to understand top-performing bra
 # Walmart Sales Data Analysis
 
 > "In this recruiting competition, job-seekers are provided with historical sales data for 45 Walmart stores located in different regions. Each store contains many departments, and participants must project the sales for each department in each store. To add to the challenge, selected holiday markdown events are included in the dataset. These markdowns are known to affect sales, but it is challenging to predict which departments are affected and the extent of the impact."  
-> *Source: Kaggle*
+
 
 ---
 
@@ -106,12 +106,41 @@ SET month_name = monthname(`date`);
 
 ### Generic
 1. How many unique cities are in the data?
+```sql
+SELECT 
+	DISTINCT city
+    -- COUNT(DISTINCT city)
+FROM sales;
+```
 2. In which city is each branch located?
+```sql
+SELECT * FROM walmart_sales.sales;
 
+SELECT 
+	 DISTINCT city,
+     branch
+FROM sales;
+```
 ### Product
 1. How many unique product lines exist?
-2. What is the most common payment method?
-3. Which product line generates the most revenue?
+   ```sql
+   SELECT
+	DISTINCT product_line
+	-- COUNT(DISTINCT product_line)
+FROM sales;
+   ```
+3. What is the most common payment method?
+   ```sql
+ SELECT
+	payment_method,
+	COUNT(payment_method) AS ctpm
+FROM sales
+GROUP BY payment_method
+ORDER BY ctpm DESC;   
+   ```
+5. Which product line generates the most revenue?
+   ```sql
+   ```
 
 ### Sales
 1. What are the sales trends by time of day and day of the week?
