@@ -377,6 +377,7 @@ The dataset contains transactions from three Walmart branches located in Mandala
 	ORDER BY cnt DESC;
   ```
 10. Which day of the week has the best average ratings per branch?
+
     ```sql
 	SELECT
 	day_name,
@@ -387,6 +388,7 @@ The dataset contains transactions from three Walmart branches located in Mandala
 	ORDER BY cnt DESC;
     ```
 ---
+
 
 ## Revenue and Profit Calculations
 
