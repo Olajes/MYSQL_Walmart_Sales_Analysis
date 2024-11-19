@@ -87,6 +87,7 @@ SET time_of_day = ( CASE
     END );
   ```
 
+---
 ### 3. Exploratory Data Analysis (EDA)
 - Conduct in-depth analysis to answer business questions.
 
