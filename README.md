@@ -73,7 +73,7 @@ The dataset contains transactions from three Walmart branches located in Mandala
 			WHEN `time` BETWEEN "00:00:00" AND "12:00:00" THEN "Morning"
 			WHEN `time` BETWEEN "12:01:00" AND "16:00:00" THEN "Afternoon"
 			ELSE "Evening"
-	    END );
+	 END );
   ```
 - Adding columns `day_name`
   
@@ -115,14 +115,14 @@ FROM sales;
 ```
 
 2. In which city is each branch located?
+   
 ```sql
-SELECT * FROM walmart_sales.sales;
-
 SELECT 
-	 DISTINCT city,
-     branch
+	DISTINCT city,
+     	branch
 FROM sales;
 ```
+
 ### Product
 1. How many unique product lines exist?
    ```sql
